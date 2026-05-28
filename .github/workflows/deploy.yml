@@ -28,6 +28,8 @@ jobs:
           override: true
 
       - name: Build
+        env:
+          RUSTFLAGS: "-C link-args=--export=main -C link-arg=--export=malloc -C link-arg=--export=free"
         run: cargo build --release --target wasm32-unknown-unknown
 
       - name: Prepare Deployment Directory
