@@ -28,6 +28,19 @@ jobs:
           override: true
 
       - name: Build
+        env:
+          RUSTFLAGS: >-
+            -C link-arg=--export=main
+            -C link-arg=--export=malloc
+            -C link-arg=--export=free
+            -C link-arg=--export=allocate_vec_u8
+            -C link-arg=--export=frame
+            -C link-arg=--export=key_down
+            -C link-arg=--export=key_up
+            -C link-arg=--export=mouse_move
+            -C link-arg=--export=mouse_down
+            -C link-arg=--export=mouse_up
+            -C link-arg=--export=resize
         run: cargo build --release --target wasm32-unknown-unknown
 
       - name: Prepare Deployment Directory
